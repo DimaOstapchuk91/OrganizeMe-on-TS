@@ -1,7 +1,8 @@
-import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf, PayloadAction } from '@reduxjs/toolkit';
 import { logaut, login, refreshUser, register } from './operations';
+import { AuthResponse, AuthState, UserResponse } from '../../types/auth';
 
-const initialState = {
+const initialState: AuthState = {
   user: {
     name: null,
     email: null,
@@ -12,27 +13,37 @@ const initialState = {
   error: false,
 };
 
-const sliсe = createSlice({
+const slice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(register.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = action.payload.token;
-        state.isLoggedIn = true;
-      })
-      .addCase(login.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = action.payload.token;
-        state.isLoggedIn = true;
-      })
+      .addCase(
+        register.fulfilled,
+        (state, action: PayloadAction<AuthResponse>) => {
+          state.user = action.payload.user;
+          state.token = action.payload.token;
+          state.isLoggedIn = true;
+        }
+      )
+      .addCase(
+        login.fulfilled,
+        (state, action: PayloadAction<AuthResponse>) => {
+          state.user = action.payload.user;
+          state.token = action.payload.token;
+          state.isLoggedIn = true;
+        }
+      )
       .addCase(logaut.fulfilled, () => initialState)
-      .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
-        state.isLoggedIn = true;
-        state.isRefreshing = false;
-      })
+      .addCase(
+        refreshUser.fulfilled,
+        (state, action: PayloadAction<UserResponse>) => {
+          state.user = action.payload;
+          state.isLoggedIn = true;
+          state.isRefreshing = false;
+        }
+      )
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
       })
@@ -68,4 +79,4 @@ const sliсe = createSlice({
   },
 });
 
-export const authReducer = sliсe.reducer;
+export const authReducer = slice.reducer;
