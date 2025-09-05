@@ -1,12 +1,12 @@
 import { NavLink } from 'react-router-dom';
 
-const AuthNav = () => {
+const AuthNav: React.FC = () => {
   return (
     <ul className='md:flex'>
       <li>
         <NavLink
           className={({ isActive }) =>
-            `mr-4 font-bold text-xl text-text-light transition-all duration-300 hover:text-green ${
+            `mr-4 font-bold text-xl text-text-light transition-all duration-300 hover:text-green outline-none ${
               isActive ? '!text-green underline' : ''
             }`
           }
@@ -18,7 +18,7 @@ const AuthNav = () => {
       <li>
         <NavLink
           className={({ isActive }) =>
-            `mr-4 font-bold text-xl text-text-light transition-all duration-300 hover:text-green ${
+            `mr-4 font-bold text-xl text-text-light transition-all duration-300 hover:text-green outline-none ${
               isActive ? '!text-green underline' : ''
             }`
           }
@@ -30,7 +30,7 @@ const AuthNav = () => {
       <li>
         <NavLink
           className={({ isActive }) =>
-            `mr-4 font-bold text-xl text-text-light transition-all duration-300 hover:text-green ${
+            `mr-4 font-bold text-xl text-text-light transition-all duration-300 hover:text-green outline-none ${
               isActive ? '!text-green underline' : ''
             }`
           }

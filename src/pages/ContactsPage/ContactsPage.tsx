@@ -5,19 +5,20 @@ import SearchBox from '../../components/SearchBox/SearchBox';
 import { fetchContacts } from '../../redux/contacts/operations';
 import { useEffect, useRef } from 'react';
 import { selectContacts } from '../../redux/contacts/selectors';
+import { AppDispatch } from '../../redux/store';
 
-const ContactsPage = () => {
-  const dispatch = useDispatch();
+const ContactsPage: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const contactData = useSelector(selectContacts);
 
-  const firstLoad = useRef(true);
+  const firstLoad = useRef<boolean>(true);
 
   useEffect(() => {
     if (firstLoad.current && contactData.length === 0) {
       dispatch(fetchContacts());
       firstLoad.current = false;
     }
-  }, [dispatch, contactData]);
+  }, [dispatch]);
 
   return (
     <div

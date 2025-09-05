@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
-import { changeFilter } from '../../redux/filters/slice';
 import { FaSearch } from 'react-icons/fa';
+import { changeFilter } from '../../redux/filters/slice.js';
 
 const SearchBox = () => {
   const dispatch = useDispatch();

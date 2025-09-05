@@ -42,7 +42,7 @@ const ContactList = () => {
                 damping: 20,
               }}
             >
-              <Contact user={item} />
+              <Contact contactItem={item} />
             </Reorder.Item>
           ))}
         </Reorder.Group>

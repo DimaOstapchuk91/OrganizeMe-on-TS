@@ -8,7 +8,7 @@ import ThemeToggleButton from '../ThemeToggleButton/ThemeToggleButton';
 import BurgerMenu from '../BurgerMenu/BurgerMenu.jsx';
 import MobileBottomMenu from '../MobileBottomMenu/MobileBottomMenu';
 
-const AppBar = () => {
+const AppBar: React.FC = () => {
   const login = useSelector(selectIsLoggedIn);
   return (
     <div className='pt-4 w-full relative'>
@@ -21,7 +21,7 @@ const AppBar = () => {
             {!login && <AuthNav />}
             {login && <UserMenu />}
           </div>
-          <BurgerMenu className='block md:hidden' />
+          <BurgerMenu />
           <ThemeToggleButton />
         </div>
       </div>

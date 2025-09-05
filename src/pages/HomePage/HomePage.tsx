@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
   const login = useSelector(selectIsLoggedIn);
 
   return (
@@ -16,7 +16,7 @@ const HomePage = () => {
       </p>
       {login ? (
         <p className='text-text-light text-center text-xl font-bold'>
-          You're all set to manage your contacts. Go to the{' '}
+          You&apos;re all set to manage your contacts. Go to the{' '}
           <NavLink className='underline text-green' to='/contacts'>
             Contacts
           </NavLink>{' '}

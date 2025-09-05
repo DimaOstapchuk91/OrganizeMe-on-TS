@@ -8,23 +8,25 @@ import ModalDelete from '../ModalDelete/ModalDelete';
 import { IoIosContact } from 'react-icons/io';
 import { FaPhone } from 'react-icons/fa6';
 import { successfullyToast } from '../../utils/toast';
+import { UserData } from '../../types/user.types';
+import { AppDispatch } from '../../redux/store';
+import { ContactData } from '../../types/contacts.types';
 
-const Contact = ({ user }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isModalDellOpen, setIsModalDellOpen] = useState(false);
-  const dispatch = useDispatch();
+interface ContactProps {
+  contactItem: ContactData;
+}
+
+const Contact: React.FC<ContactProps> = ({ contactItem }) => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isModalDellOpen, setIsModalDellOpen] = useState<boolean>(false);
+  const dispatch = useDispatch<AppDispatch>();
+
+  // console.log(user);
 
   const handleDeleteContactUser = () => {
-    dispatch(deleteContact(user.id));
+    dispatch(deleteContact(contactItem.id));
 
     successfullyToast('Successfully Deleted');
-  };
-
-  const handleOpenModal = openModal => {
-    openModal(true);
-  };
-  const handleCloseModal = closeModal => {
-    closeModal(false);
   };
 
   ReactModal.setAppElement('#root');
@@ -35,22 +37,23 @@ const Contact = ({ user }) => {
         <p className='flex items-center font-bold text-text-light mb-2'>
           <IoIosContact className='w-6 h-6 mr-3 text-yellow' />
 
-          {user.name.charAt(0).toUpperCase() + user.name.slice(1)}
+          {contactItem.name.charAt(0).toUpperCase() + contactItem.name.slice(1)}
         </p>
         <p className='flex items-center font-bold text-text-light'>
-          <FaPhone className='w-4 h-4 mr-4 text-green ml-1' /> {user.number}
+          <FaPhone className='w-4 h-4 mr-4 text-green ml-1' />{' '}
+          {contactItem.number}
         </p>
       </div>
       <div className='flex flex-col gap-1'>
         <button
           className='bg-red mb-1 opacity-70 text-text-light p-1 rounded-md transition-all duration-300 shadow-custom-btn hover:opacity-90 '
           type='button'
-          onClick={() => handleOpenModal(setIsModalDellOpen)}
+          onClick={() => setIsModalOpen(true)}
         >
           <RiDeleteBinLine size={24} />
         </button>
         <button
-          onClick={() => handleOpenModal(setIsModalOpen)}
+          onClick={() => setIsModalDellOpen(false)}
           className='bg-green opacity-80 text-text-light p-1 rounded-md transition-all shadow-custom-btn duration-300 hover:opacity-100'
         >
           <RiEdit2Line size={24} />
@@ -61,8 +64,8 @@ const Contact = ({ user }) => {
           className='fixed inset-0 flex items-center justify-center'
         >
           <EditContactModal
-            closeModal={() => handleCloseModal(setIsModalOpen)}
-            user={user}
+            closeModal={() => setIsModalOpen(false)}
+            user={contactItem}
           />
         </ReactModal>
         <ReactModal
@@ -71,7 +74,7 @@ const Contact = ({ user }) => {
           className='fixed inset-0 flex items-center justify-center'
         >
           <ModalDelete
-            closeModal={() => handleCloseModal(setIsModalDellOpen)}
+            closeModal={() => setIsModalDellOpen(false)}
             deleteContact={handleDeleteContactUser}
           />
         </ReactModal>

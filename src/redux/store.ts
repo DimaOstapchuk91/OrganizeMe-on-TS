@@ -1,6 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './auth/slice';
-import { filtersReducer } from './filters/slice';
 
 import {
   persistStore,
@@ -16,6 +15,7 @@ import storage from 'redux-persist/lib/storage';
 import { themeReducer } from './theme/slice';
 import { contactReducer } from './contacts/slice';
 import { AuthState } from './auth/auth.types';
+import { filtersReducer } from './filters/slice';
 
 const persistAuthConfig = {
   key: 'userToken',
