@@ -15,9 +15,10 @@ import { selectIsRefreshing } from './redux/auth/selectors';
 import { Toaster } from 'react-hot-toast';
 import { selectTheme } from './redux/theme/selector';
 import { AnimatePresence } from 'framer-motion';
+import { AppDispatch } from './redux/store';
 
 function App() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const isRefreshing = useSelector(selectIsRefreshing);
   const theme = useSelector(selectTheme);
 

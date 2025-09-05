@@ -1,4 +1,9 @@
 import * as Yup from 'yup';
+import {
+  ContactFormPayload,
+  LoginPayload,
+  RegisterPayload,
+} from './utils.types';
 
 const emailValid = Yup.string()
   .email('Invalid email format')
@@ -22,18 +27,21 @@ const namberValid = Yup.string()
   .max(50, 'Maximum 50 digits')
   .required('Must be filled');
 
-export const orderSchemaLogin = Yup.object({
-  email: emailValid,
-  password: passwordValid,
+export const orderSchemaLogin: Yup.ObjectSchema<LoginPayload> = Yup.object({
+  email: emailValid.defined(),
+  password: passwordValid.defined(),
 });
 
-export const orderSchemaReg = Yup.object({
+export const orderSchemaReg: Yup.ObjectSchema<RegisterPayload> = Yup.object({
   name: nameValid,
   email: emailValid,
   password: passwordValid,
 });
 
-export const orderSchemaContact = Yup.object({
-  name: nameValid,
-  number: namberValid,
-});
+export const orderSchemaContact: Yup.ObjectSchema<ContactFormPayload> =
+  Yup.object({
+    name: nameValid,
+    number: namberValid,
+  });
+
+// type Person = Yup.InferType<typeof orderSchemaLogin>;
