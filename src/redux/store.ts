@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './auth/slice';
 import { filtersReducer } from './filters/slice';
-import { contactReducer } from './contacts/slice';
 
 import {
   persistStore,
@@ -15,6 +14,8 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { themeReducer } from './theme/slice';
+import { contactReducer } from './contacts/slice';
+import { AuthState } from './auth/auth.types';
 
 const persistAuthConfig = {
   key: 'userToken',
@@ -27,7 +28,10 @@ const persistThemeConfig = {
   storage,
 };
 
-const persistedAuthReducer = persistReducer(persistAuthConfig, authReducer);
+const persistedAuthReducer = persistReducer<AuthState>(
+  persistAuthConfig,
+  authReducer
+);
 const persistedThemeReducer = persistReducer(persistThemeConfig, themeReducer);
 
 export const store = configureStore({
@@ -38,7 +42,7 @@ export const store = configureStore({
     theme: persistedThemeReducer,
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({
+    getDefaultMiddleware<{ serializableCheck: { ignoredActions: string[] } }>({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },

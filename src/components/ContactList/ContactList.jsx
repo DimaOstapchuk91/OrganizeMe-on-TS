@@ -2,12 +2,13 @@ import Contact from '../Contact/Contact';
 import { useSelector } from 'react-redux';
 import Loader from '../Loader/Loader';
 import { Reorder } from 'framer-motion';
+
+import { useEffect, useState } from 'react';
 import {
   selectContacts,
   selectFilteredContacts,
   selectIsLoading,
 } from '../../redux/contacts/selectors';
-import { useEffect, useState } from 'react';
 
 const ContactList = () => {
   const searchUsers = useSelector(selectFilteredContacts);

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../redux/auth/selectors';
 import { logaut } from '../../redux/auth/operations';
-import { velcomeToast } from '../../utils/toast.js';
+import { velcomeToast } from '../../utils/toast';
 
 const UserMenu = () => {
   const dispatch = useDispatch();

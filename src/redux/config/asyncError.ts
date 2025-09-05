@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { RejectValue } from '../../types/auth';
+import { RejectValue } from '../../types/reduxTypes/common.types';
 
 export function handleAsyncError(error: unknown): RejectValue {
   let message = 'Unknown error';

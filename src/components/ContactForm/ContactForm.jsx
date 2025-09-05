@@ -1,8 +1,8 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { addContact } from '../../redux/contacts/operations';
-import { orderSchemaContact } from '../../utils/formValidation.js';
-import { successfullyToast } from '../../utils/toast.js';
+import { orderSchemaContact } from '../../utils/formValidation';
+import { successfullyToast } from '../../utils/toast';
 
 const ContactForm = () => {
   const dispatch = useDispatch();

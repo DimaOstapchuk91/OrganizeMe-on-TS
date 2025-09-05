@@ -6,7 +6,7 @@ import { selectIsLoggedIn } from '../../redux/auth/selectors';
 import { NavLink } from 'react-router-dom';
 import ThemeToggleButton from '../ThemeToggleButton/ThemeToggleButton';
 import BurgerMenu from '../BurgerMenu/BurgerMenu.jsx';
-import MobileBottomMenu from '../MobileBottomMenu/MobileBottomMenu.jsx';
+import MobileBottomMenu from '../MobileBottomMenu/MobileBottomMenu';
 
 const AppBar = () => {
   const login = useSelector(selectIsLoggedIn);

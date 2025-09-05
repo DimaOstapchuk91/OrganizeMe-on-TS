@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/auth/operations';
 import { selectIsError } from '../../redux/auth/selectors';
 import { NavLink } from 'react-router-dom';
-import { orderSchemaLogin } from '../../utils/formValidation.js';
-import { errToast } from '../../utils/toast.js';
+import { orderSchemaLogin } from '../../utils/formValidation';
+import { errToast } from '../../utils/toast';
 
 const LoginForm = () => {
   const dispatch = useDispatch();

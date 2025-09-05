@@ -7,7 +7,7 @@ import ReactModal from 'react-modal';
 import ModalDelete from '../ModalDelete/ModalDelete';
 import { IoIosContact } from 'react-icons/io';
 import { FaPhone } from 'react-icons/fa6';
-import { successfullyToast } from '../../utils/toast.js';
+import { successfullyToast } from '../../utils/toast';
 
 const Contact = ({ user }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

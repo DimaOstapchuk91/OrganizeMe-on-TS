@@ -2,7 +2,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { register } from '../../redux/auth/operations';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { orderSchemaReg } from '../../utils/formValidation.js';
+import { orderSchemaReg } from '../../utils/formValidation';
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();

@@ -1,31 +1,17 @@
-import { RootState } from '../redux/store';
+import { UserData } from '../../types/user.types';
 
 // Operations Types and Interfaces
-export interface UserData {
-  name: string;
-  email: string;
-  password: string;
-}
-
-export interface RejectValue {
-  message: string;
-}
 
 export interface AuthResponse {
   token: string;
   user: Omit<UserData, 'password'>;
 }
 
-export interface ThunkConfig {
-  state: RootState;
-  rejectValue: RejectValue;
-}
-
 export type RegisterPayload = UserData;
 
-export type LoginPayload = Omit<UserData, 'name'>;
+export type LoginPayload = Pick<UserData, 'email' | 'password'>;
 
-export type UserResponse = Omit<UserData, 'password'>;
+export type UserResponse = Pick<UserData, 'name' | 'email'>;
 
 // Slice State Interface
 interface UserState {

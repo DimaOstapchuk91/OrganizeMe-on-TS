@@ -4,10 +4,10 @@ import {
   AuthResponse,
   LoginPayload,
   RegisterPayload,
-  ThunkConfig,
   UserResponse,
-} from '../../types/auth';
+} from './auth.types';
 import { handleAsyncError } from '../config/asyncError';
+import { ThunkConfig } from '../../types/reduxTypes/common.types';
 
 export const goitApi = axios.create({
   baseURL: 'https://connections-api.goit.global',

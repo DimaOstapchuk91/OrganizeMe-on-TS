@@ -1,6 +1,6 @@
 import { createSlice, isAnyOf, PayloadAction } from '@reduxjs/toolkit';
 import { logaut, login, refreshUser, register } from './operations';
-import { AuthResponse, AuthState, UserResponse } from '../../types/auth';
+import { AuthResponse, AuthState, UserResponse } from './auth.types';
 
 const initialState: AuthState = {
   user: {

@@ -6,8 +6,9 @@ import {
   updateContact,
 } from './operations';
 import { logaut } from '../auth/operations';
+import { ContactsState } from './contacts.types';
 
-const initialState = {
+const initialState: ContactsState = {
   contacts: {
     items: [],
     loading: false,
@@ -18,6 +19,7 @@ const initialState = {
 const slise = createSlice({
   name: 'contacts',
   initialState,
+  reducers: {},
   extraReducers: builder => {
     builder
       .addCase(fetchContacts.fulfilled, (state, action) => {
@@ -64,7 +66,9 @@ const slise = createSlice({
         ),
         (state, action) => {
           state.contacts.loading = false;
-          state.contacts.error = action.payload;
+          console.log('slice =', action.payload);
+          state.contacts.error =
+            action.payload?.message ?? 'Something went wrong';
         }
       )
       .addMatcher(

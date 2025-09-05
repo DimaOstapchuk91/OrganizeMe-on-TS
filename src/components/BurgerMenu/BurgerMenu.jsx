@@ -1,9 +1,9 @@
 import { GiHamburgerMenu } from 'react-icons/gi';
-import AuthNav from '../AuthNav/AuthNav.jsx';
+import AuthNav from '../AuthNav/AuthNav';
 import { useSelector } from 'react-redux';
-import { selectIsLoggedIn } from '../../redux/auth/selectors.js';
+import { selectIsLoggedIn } from '../../redux/auth/selectors';
 import { FaUser } from 'react-icons/fa';
-import UserMenu from '../UserMenu/UserMenu.jsx';
+import UserMenu from '../UserMenu/UserMenu';
 
 const BurgerMenu = () => {
   const login = useSelector(selectIsLoggedIn);
