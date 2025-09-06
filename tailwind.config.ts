@@ -7,6 +7,7 @@ export default {
       boxShadow: {
         'custom-black': 'var(--shadow-castom)',
         'custom-btn': 'var(--shadow-btn)',
+        'custom-btn-hover': 'var(--shadow-btn-hover)',
       },
       opacity: {
         'bg-opasity': 'var(--opacity-level)',

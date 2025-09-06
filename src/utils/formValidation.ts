@@ -14,7 +14,7 @@ const emailValid = Yup.string()
 const passwordValid = Yup.string()
   .min(3, 'Minimum 3 characters')
   .max(50, 'Maximum 50 characters')
-  .required('Password is required');
+  .required('Password required');
 
 const nameValid = Yup.string()
   .min(3, 'Minimum 3 characters')
@@ -28,8 +28,8 @@ const namberValid = Yup.string()
   .required('Must be filled');
 
 export const orderSchemaLogin: Yup.ObjectSchema<LoginPayload> = Yup.object({
-  email: emailValid.defined(),
-  password: passwordValid.defined(),
+  email: emailValid,
+  password: passwordValid,
 });
 
 export const orderSchemaReg: Yup.ObjectSchema<RegisterPayload> = Yup.object({

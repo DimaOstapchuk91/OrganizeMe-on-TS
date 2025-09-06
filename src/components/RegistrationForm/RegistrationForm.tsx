@@ -1,13 +1,18 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik, FormikHelpers } from 'formik';
 import { register } from '../../redux/auth/operations';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { orderSchemaReg } from '../../utils/formValidation';
+import { AppDispatch } from '../../redux/store';
+import { UserData } from '../../types/user.types';
 
-const RegistrationForm = () => {
-  const dispatch = useDispatch();
+const RegistrationForm: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
 
-  const handleRegister = (value, options) => {
+  const handleRegister = (
+    value: UserData,
+    options: FormikHelpers<UserData>
+  ): void => {
     dispatch(register(value));
     options.resetForm();
   };
@@ -18,7 +23,7 @@ const RegistrationForm = () => {
         Registration
       </h2>
       <div className='flex flex-col md:flex-row md:items-baseline gap-8'>
-        <Formik
+        <Formik<UserData>
           initialValues={{ name: '', email: '', password: '' }}
           validationSchema={orderSchemaReg}
           onSubmit={handleRegister}
@@ -27,10 +32,14 @@ const RegistrationForm = () => {
             <label className='flex flex-col font-semibold'>
               <div className='flex justify-between'>
                 <p className='text-text-light mb-1'>Name</p>
-                <ErrorMessage className='text-red' name='name' component='p' />
+                <ErrorMessage
+                  className='text-red text-sm'
+                  name='name'
+                  component='p'
+                />
               </div>
               <Field
-                className='py-2 px-5 h-8 w-full rounded-md outline-none  text-base font-medium shadow-custom-black focus:border-green focus:border-2 '
+                className='py-2 px-5 h-8 w-full rounded-md outline-none  text-base font-medium shadow-custom-black hover:shadow-custom-btn-hover focus:shadow-custom-btn-hover  transition-all duration-300 '
                 name='name'
                 placeholder='Enter Name'
               />
@@ -38,10 +47,14 @@ const RegistrationForm = () => {
             <label className='flex flex-col font-semibold'>
               <div className='flex justify-between'>
                 <p className='text-text-light mb-1'>Email</p>
-                <ErrorMessage className='text-red' name='email' component='p' />
+                <ErrorMessage
+                  className='text-red text-sm'
+                  name='email'
+                  component='p'
+                />
               </div>
               <Field
-                className='py-2 px-5 h-8 w-full rounded-md outline-none  text-base font-medium shadow-custom-black  focus:border-green focus:border-2'
+                className='py-2 px-5 h-8 w-full rounded-md outline-none  text-base font-medium shadow-custom-black  hover:shadow-custom-btn-hover focus:shadow-custom-btn-hover  transition-all duration-300'
                 name='email'
                 placeholder='Enter email'
               />
@@ -50,13 +63,13 @@ const RegistrationForm = () => {
               <div className='flex justify-between'>
                 <p className='text-text-light mb-1'>Password</p>
                 <ErrorMessage
-                  className='text-red'
+                  className='text-red text-sm'
                   name='password'
                   component='p'
                 />
               </div>
               <Field
-                className='py-2 px-5 h-8 w-full rounded-md outline-none  text-base font-medium shadow-custom-black  focus:border-green focus:border-2'
+                className='py-2 px-5 h-8 w-full rounded-md outline-none  text-base font-medium shadow-custom-black  hover:shadow-custom-btn-hover focus:shadow-custom-btn-hover  transition-all duration-300'
                 name='password'
                 placeholder='Enter the password'
               />

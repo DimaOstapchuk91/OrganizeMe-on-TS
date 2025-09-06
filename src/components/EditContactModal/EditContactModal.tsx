@@ -4,20 +4,30 @@ import { updateContact } from '../../redux/contacts/operations';
 import { orderSchemaContact } from '../../utils/formValidation';
 import { successfullyToast } from '../../utils/toast';
 import { IoMdCloseCircleOutline } from 'react-icons/io';
+import { ContactData, ContactFormValues } from '../../types/contacts.types';
+import { AppDispatch } from '../../redux/store';
 
-export const EditContactModal = ({ closeModal, user }) => {
-  const dispatch = useDispatch();
+interface EditContactModalProps {
+  closeModal: () => void;
+  contactItem: ContactData;
+}
 
-  const handleForm = values => {
-    dispatch(updateContact({ id: user.id, ...values }));
+export const EditContactModal: React.FC<EditContactModalProps> = ({
+  closeModal,
+  contactItem,
+}) => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleForm = (values: ContactFormValues): void => {
+    dispatch(updateContact({ id: contactItem.id, ...values }));
     successfullyToast('Successfully change contact');
     closeModal();
   };
 
   return (
     <div>
-      <Formik
-        initialValues={{ name: '', number: '' }}
+      <Formik<ContactFormValues>
+        initialValues={{ name: contactItem.name, number: contactItem.number }}
         onSubmit={handleForm}
         validationSchema={orderSchemaContact}
       >
@@ -26,6 +36,7 @@ export const EditContactModal = ({ closeModal, user }) => {
             type='button'
             className='p-1 w-8 self-end text-light-blue transition-all duration-300'
             onClick={closeModal}
+            aria-label='Close modal'
           >
             <IoMdCloseCircleOutline className='w-8 h-8 text-text-light duration-300 transition-all hover:text-green' />
           </button>

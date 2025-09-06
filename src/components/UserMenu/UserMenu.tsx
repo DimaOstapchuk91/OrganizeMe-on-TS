@@ -2,12 +2,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../redux/auth/selectors';
 import { logaut } from '../../redux/auth/operations';
 import { velcomeToast } from '../../utils/toast';
+import { AppDispatch } from '../../redux/store';
 
-const UserMenu = () => {
-  const dispatch = useDispatch();
+const UserMenu: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const userName = useSelector(selectUser);
 
-  const handleExit = () => {
+  const handleExit = (): void => {
     velcomeToast(`Goodbye ${userName.name}`);
     dispatch(logaut());
   };
@@ -17,7 +18,9 @@ const UserMenu = () => {
       <h2 className='text-text-light font-bold text-2xl'>
         Hello!{' '}
         <span className='text-green'>
-          {userName.name.charAt(0).toUpperCase() + userName.name.slice(1)}
+          {userName?.name
+            ? userName.name.charAt(0).toUpperCase() + userName.name.slice(1)
+            : 'User'}
         </span>
       </h2>
       <button

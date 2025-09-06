@@ -1,6 +1,14 @@
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 
-const ModalDelete = ({ closeModal, deleteContact }) => {
+interface ModalDeleteProps {
+  closeModal: () => void;
+  deleteContact: () => void;
+}
+
+const ModalDelete: React.FC<ModalDeleteProps> = ({
+  closeModal,
+  deleteContact,
+}) => {
   const handleDell = () => {
     deleteContact();
     closeModal();
@@ -28,7 +36,7 @@ const ModalDelete = ({ closeModal, deleteContact }) => {
           </button>
           <button
             className='py-2 px-5  font-bold bg-background text-text-light rounded-lg transition-all shadow-custom-btn hover:bg-hover-blue hover:text-green'
-            onClick={() => closeModal()}
+            onClick={closeModal}
           >
             No
           </button>

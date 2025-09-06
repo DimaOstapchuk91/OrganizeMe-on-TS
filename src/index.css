@@ -12,6 +12,7 @@
   --hover-gray: rgb(199, 210, 219);
   --green: green;
   --shadow-castom: 0 10px 20px rgba(0, 0, 0, 0.8);
+  --shadow-btn-hover: 0 3px 10px rgba(3, 90, 29, 0.8);
   --shadow-btn: 0 3px 10px rgba(0, 0, 0, 0.8);
   --bg-gradient: url('./assets/img/image-bg.jpg');
 
@@ -29,6 +30,7 @@
   --green: green;
   --shadow-castom: 0 10px 20px #444444;
   --shadow-btn: 0 3px 10px rgba(0, 0, 0, 0.8);
+  --shadow-btn-hover: 0 3px 10px rgba(3, 150, 47, 0.8);
   --bg-gradient: linear-gradient(
       to bottom,
       rgba(10, 10, 10, 0.8),

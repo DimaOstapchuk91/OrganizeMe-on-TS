@@ -5,3 +5,5 @@ export interface UserData {
 }
 
 export type UserProfile = Omit<UserData, 'password'>;
+
+export type UserLogin = Omit<UserData, 'name'>;

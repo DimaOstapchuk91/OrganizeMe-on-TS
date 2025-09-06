@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
 
-const Navigation = () => {
+const Navigation: React.FC = () => {
   const loggedIn = useSelector(selectIsLoggedIn);
 
   return (

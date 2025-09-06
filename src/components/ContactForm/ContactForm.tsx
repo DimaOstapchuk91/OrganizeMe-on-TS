@@ -1,13 +1,18 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik, FormikHelpers } from 'formik';
 import { useDispatch } from 'react-redux';
 import { addContact } from '../../redux/contacts/operations';
 import { orderSchemaContact } from '../../utils/formValidation';
 import { successfullyToast } from '../../utils/toast';
+import { AppDispatch } from '../../redux/store';
+import { ContactFormValues } from '../../types/contacts.types';
 
-const ContactForm = () => {
-  const dispatch = useDispatch();
+const ContactForm: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
 
-  const handleForm = (values, options) => {
+  const handleForm = (
+    values: ContactFormValues,
+    options: FormikHelpers<ContactFormValues>
+  ): void => {
     dispatch(
       addContact({
         name: values.name.trim().toLowerCase(),
@@ -22,7 +27,7 @@ const ContactForm = () => {
 
   return (
     <div>
-      <Formik
+      <Formik<ContactFormValues>
         initialValues={{ name: '', number: '' }}
         onSubmit={handleForm}
         validationSchema={orderSchemaContact}
@@ -34,10 +39,14 @@ const ContactForm = () => {
           <label className='flex flex-col gap-2 font-bold'>
             <div className='flex justify-between'>
               <p className='text-text-light'>Name</p>
-              <ErrorMessage className='text-red' name='name' component='p' />
+              <ErrorMessage
+                className='text-red text-sm'
+                name='name'
+                component='p'
+              />
             </div>
             <Field
-              className='py-2 px-5 h-8 w-full rounded-md outline-none text-base font-medium shadow-custom-black focus:border-2 focus:border-green'
+              className='py-2 px-5 h-8 w-full rounded-md outline-none text-base font-medium shadow-custom-black hover:shadow-custom-btn-hover focus:shadow-custom-btn-hover  transition-all duration-300'
               name='name'
               placeholder='Enter Contact Name'
             />
@@ -45,10 +54,14 @@ const ContactForm = () => {
           <label className='flex flex-col gap-2 font-bold'>
             <div className='flex justify-between'>
               <p className='text-text-light'>Number</p>
-              <ErrorMessage className='text-red' name='number' component='p' />
+              <ErrorMessage
+                className='text-red text-sm'
+                name='number'
+                component='p'
+              />
             </div>
             <Field
-              className='py-2 px-5 h-8 w-full rounded-md  outline-none  text-base font-medium shadow-custom-black  focus:border-2 focus:border-green'
+              className='py-2 px-5 h-8 w-full rounded-md  outline-none  text-base font-medium shadow-custom-black  hover:shadow-custom-btn-hover focus:shadow-custom-btn-hover  transition-all duration-300'
               name='number'
               placeholder='Enter Contact Number'
             />

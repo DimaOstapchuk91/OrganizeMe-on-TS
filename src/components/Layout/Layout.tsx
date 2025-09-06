@@ -1,8 +1,12 @@
-import { Suspense } from 'react';
+import { ReactNode, Suspense } from 'react';
 
 import AppBar from '../AppBar/AppBar';
 
-const Layout = ({ children }) => {
+interface LayoutProps {
+  children: ReactNode;
+}
+
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className=''>
       <AppBar />

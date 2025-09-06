@@ -8,7 +8,6 @@ import ModalDelete from '../ModalDelete/ModalDelete';
 import { IoIosContact } from 'react-icons/io';
 import { FaPhone } from 'react-icons/fa6';
 import { successfullyToast } from '../../utils/toast';
-import { UserData } from '../../types/user.types';
 import { AppDispatch } from '../../redux/store';
 import { ContactData } from '../../types/contacts.types';
 
@@ -20,8 +19,6 @@ const Contact: React.FC<ContactProps> = ({ contactItem }) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isModalDellOpen, setIsModalDellOpen] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
-
-  // console.log(user);
 
   const handleDeleteContactUser = () => {
     dispatch(deleteContact(contactItem.id));
@@ -65,7 +62,7 @@ const Contact: React.FC<ContactProps> = ({ contactItem }) => {
         >
           <EditContactModal
             closeModal={() => setIsModalOpen(false)}
-            user={contactItem}
+            contactItem={contactItem}
           />
         </ReactModal>
         <ReactModal

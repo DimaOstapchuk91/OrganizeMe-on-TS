@@ -9,13 +9,14 @@ import {
   selectFilteredContacts,
   selectIsLoading,
 } from '../../redux/contacts/selectors';
+import { ContactData } from '../../types/contacts.types';
 
-const ContactList = () => {
+const ContactList: React.FC = () => {
   const searchUsers = useSelector(selectFilteredContacts);
   const contact = useSelector(selectContacts);
   const loader = useSelector(selectIsLoading);
 
-  const [orderContact, setOrderContact] = useState([]);
+  const [orderContact, setOrderContact] = useState<ContactData[]>([]);
 
   useEffect(() => {
     setOrderContact(searchUsers);
@@ -24,7 +25,7 @@ const ContactList = () => {
   return (
     <div className='w-full'>
       {contact.length > 0 ? (
-        <Reorder.Group
+        <Reorder.Group<ContactData>
           className='flex flex-col gap-6 relative'
           axis='y'
           values={orderContact}
@@ -32,7 +33,7 @@ const ContactList = () => {
         >
           {loader && <Loader />}
           {orderContact.map(item => (
-            <Reorder.Item
+            <Reorder.Item<ContactData>
               className='flex justify-between items-center p-4 w-full h-21 bg-bg-gray cursor-grab rounded-xl shadow-custom-black  will-change-transform'
               key={item.id}
               value={item}

@@ -2,7 +2,7 @@ import { AiOutlineHome } from 'react-icons/ai';
 import { RiContactsBook3Line } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
 
-const MobileBottomMenu = () => {
+const MobileBottomMenu: React.FC = () => {
   return (
     <div className='bg-background  w-[90%] p-2 px-6 pb-2 mx-auto rounded-t-xl'>
       <nav className=''>

@@ -5,12 +5,14 @@ import { selectIsError } from '../../redux/auth/selectors';
 import { NavLink } from 'react-router-dom';
 import { orderSchemaLogin } from '../../utils/formValidation';
 import { errToast } from '../../utils/toast';
+import { AppDispatch } from '../../redux/store';
+import { UserLogin } from '../../types/user.types';
 
-const LoginForm = () => {
-  const dispatch = useDispatch();
+const LoginForm: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const errorLogin = useSelector(selectIsError);
 
-  const handleLogin = value => {
+  const handleLogin = (value: UserLogin) => {
     dispatch(login(value));
 
     if (errorLogin) {
@@ -24,7 +26,7 @@ const LoginForm = () => {
       <h2 className='text-center text-text-light font-bold text-4xl mb-8'>
         Login
       </h2>
-      <Formik
+      <Formik<UserLogin>
         initialValues={{ email: '', password: '' }}
         validationSchema={orderSchemaLogin}
         onSubmit={handleLogin}
@@ -33,10 +35,14 @@ const LoginForm = () => {
           <label className='flex flex-col font-semibold'>
             <div className='flex justify-between'>
               <p className='text-text-light mb-1'>Login</p>
-              <ErrorMessage className='text-red' name='email' component='p' />
+              <ErrorMessage
+                className='text-red text-sm'
+                name='email'
+                component='p'
+              />
             </div>
             <Field
-              className='py-2 px-5 h-8 w-full rounded-md outline-none  text-base font-medium shadow-custom-black focus:border-green focus:border-2'
+              className='py-2 px-5 h-8 w-full rounded-md outline-none  text-base font-medium shadow-custom-black hover:shadow-custom-btn-hover focus:shadow-custom-btn-hover transition-all duration-300'
               name='email'
               placeholder='Enter the Login'
             />
@@ -45,13 +51,13 @@ const LoginForm = () => {
             <div className='flex justify-between'>
               <p className='text-text-light mb-1'>Password</p>
               <ErrorMessage
-                className='text-red'
+                className='text-red text-sm'
                 name='password'
                 component='p'
               />
             </div>
             <Field
-              className='py-2 px-5 h-8 w-full rounded-md outline-none  text-base font-medium shadow-custom-black focus:border-green focus:border-2'
+              className='py-2 px-5 h-8 w-full rounded-md outline-none  text-base font-medium shadow-custom-black hover:shadow-custom-btn-hover focus:shadow-custom-btn-hover transition-all duration-300'
               name='password'
               placeholder='Enter the password'
             />
